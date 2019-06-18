@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'placeholder_widget.dart';
 import 'add_widget.dart';
-
+import 'pages/todoList.dart';
+import 'pages/doneList.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,8 +16,8 @@ class _HomeState extends State<Home> {
   String title = 'Future';
   final List<Widget> _children = [
     Add(),
-    PlaceholderWidget(Colors.deepOrange),
-    PlaceholderWidget(Colors.green),
+    TodoList(),
+    DoneList(),
     PlaceholderWidget(Colors.redAccent)
   ];
   @override
@@ -35,11 +36,11 @@ class _HomeState extends State<Home> {
           new BottomNavigationBarItem(
               icon: Icon(Icons.add), title: Text('新增任务')),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.format_list_bulleted), title: Text('TodoList')),
+              icon: Icon(Icons.format_list_bulleted), title: Text('待办任务')),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.timeline), title: Text('我的日程')),
+              icon: Icon(Icons.done), title: Text('完成任务')),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border), title: Text('我的喜欢'))
+              icon: Icon(Icons.calendar_view_day), title: Text('我的日程')),
         ],
       ),
     );

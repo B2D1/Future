@@ -13,6 +13,7 @@ class _TodoListState extends State<TodoList> {
   TodoSqlite todoSqlite = new TodoSqlite();
   List<Todo> todos;
   final _biggerFont = const TextStyle(fontSize: 18.0);
+
   @override
   void initState() {
     super.initState();
@@ -24,29 +25,27 @@ class _TodoListState extends State<TodoList> {
     return Scaffold(
       body: todos == null
           ? Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 10.0),
-              child: ListView.builder(
-                itemCount: todos.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return new ListTile(
-                    title: new Text(
-                      todos[index].title,
-                      style: _biggerFont,
-                    ),
-                    trailing: new Icon(
-                      Icons.done,
-                    ),
-                    onTap: () {
-                      updateTodo(todos[index]);
-                      todos.removeAt(index);
-                      setState(() {
-                        todos = todos;
-                      });
-                    },
-                  );
-                },
-              ),
+          : ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: todos.length,
+              itemBuilder: (BuildContext context, int index) {
+                return new ListTile(
+                  title: new Text(
+                    todos[index].title,
+                    style: _biggerFont,
+                  ),
+                  trailing: new Icon(
+                    Icons.check_box_outline_blank,
+                  ),
+                  onTap: () {
+                    updateTodo(todos[index]);
+                    todos.removeAt(index);
+                    setState(() {
+                      todos = todos;
+                    });
+                  },
+                );
+              },
             ),
     );
   }

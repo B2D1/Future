@@ -19,7 +19,7 @@ class Todo {
     return map;
   }
 
-  Todo(int id, String title, bool done) {
+  Todo(String title, bool done) {
     this.title = title;
     this.done = done;
   }

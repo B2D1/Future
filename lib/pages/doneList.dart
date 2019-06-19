@@ -1,4 +1,3 @@
-import 'package:app/models/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:app/services/todo.dart';
 
@@ -13,6 +12,7 @@ class _DoneListState extends State<DoneList> {
   TodoSqlite todoSqlite = new TodoSqlite();
   List todos;
   final _biggerFont = const TextStyle(fontSize: 18.0);
+
   @override
   void initState() {
     super.initState();
@@ -24,29 +24,24 @@ class _DoneListState extends State<DoneList> {
     return Scaffold(
       body: todos == null
           ? Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 10.0),
-              child: ListView.builder(
-                itemCount: todos.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return new ListTile(
-                    title: new Text(
-                      todos[index].title,
-                      style: _biggerFont,
-                    ),
-                    trailing: new Icon(
-                      Icons.delete,
-                    ),
-                    onTap: () {
-                      deleteTodo(todos[index].id);
-                      todos.removeAt(index);
-                      setState(() {
-                        todos = todos;
-                      });
-                    },
-                  );
-                },
-              ),
+          : ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: todos.length,
+              itemBuilder: (BuildContext context, int index) {
+                return new ListTile(
+                  title: new Text(todos[index].title, style: _biggerFont),
+                  trailing: new Icon(
+                    Icons.delete,
+                  ),
+                  onTap: () {
+                    deleteTodo(todos[index].id);
+                    todos.removeAt(index);
+                    setState(() {
+                      todos = todos;
+                    });
+                  },
+                );
+              },
             ),
     );
   }
